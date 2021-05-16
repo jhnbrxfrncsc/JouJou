@@ -3,13 +3,13 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
-import appRoutes from './routes/appRoutes.js';
+import blogRoutes from './routes/blogRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 
 const app = express();
 dotenv.config();
 
-// const SECRET = process.env.SECRET;
 const DBURI = process.env.DBURI;
 const HOST = process.env.HOST;
 const PORT = process.env.PORT;
@@ -36,4 +36,5 @@ app.use(express.urlencoded({ limit: '30mb', extended: true }));
 app.use(cors());
 
 // Routes
-app.use("/", appRoutes);
+app.use("/", blogRoutes);
+app.use("/", userRoutes);
