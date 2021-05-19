@@ -84,7 +84,6 @@ const Header = () => {
                                 variant="contained"
                                 color="primary"
                                 className={classes.loginBtn}
-                                // onClick={handleLogin}
                             >
                                 Login
                             </Button>

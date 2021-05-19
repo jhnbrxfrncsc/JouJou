@@ -31,7 +31,8 @@ const SignUp = () => {
                 onSubmit={
                     ({ firstName, lastName, email, password }, { resetForm }) => {
                         const newData = { firstName, lastName, email, password };
-                        dispatch(signUpUser(newData, history))
+                        // console.log(newData);
+                        dispatch(signUpUser(newData, history));
                         resetForm({ values : '' });
                     }
                 }

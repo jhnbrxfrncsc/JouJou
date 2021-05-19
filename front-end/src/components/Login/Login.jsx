@@ -13,8 +13,13 @@ import { Formik } from 'formik';
 
 import SignInSchema from '../../schema/signInSchema';
 import LoginForm from './LoginForm';
+import { signInUser } from '../../redux/actions/mainAction';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 
 const Login = () => {
+    const dispatch = useDispatch();
+    const history = useHistory();
     return (
         <>
             <Formik 
@@ -24,7 +29,7 @@ const Login = () => {
                 }}
                 onSubmit={
                     (data, { resetForm }) => {
-                        console.log(data);
+                        dispatch(signInUser(data, history));
                         // resetForm({ values : '' });
                     }
                 }

@@ -8,7 +8,8 @@ router.get("/", (req, res) => {
 })
 
 // Routes
+router.get("/api/userss", userController.user_index);
 router.post("/api/users", userController.user_signin);
-router.post("/api/users", userController.user_signup);
+router.post("/api/newUsers", userController.user_signup);
 
 export default router;
