@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 // Material UI
 import { 
     Box, 
+    CircularProgress, 
     IconButton, 
     Paper, 
     Typography 
@@ -24,20 +25,24 @@ const Blogs = () => {
     const dispatch = useDispatch();
     const selector = useSelector(state => state.blogReducer);
     const [open, setOpen] = useState(false);
-    const [data, setData] = useState();
-    const [featured, setFeatured] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [data, setData] = useState(null);
+    const [featured, setFeatured] = useState(null);
 
     useEffect(() => {
         let mounted = true;
         if(mounted) {
             dispatch(getBlogs());
             setData(selector[0]);
-            setFeatured(selector.slice(1, 5))
+            setFeatured(selector.slice(1, 5));
+            setTimeout(() => {
+                setLoading(true);
+            }, 1000);
         }
         return () => {
             mounted = false;
         }
-    }, [dispatch, data, selector]);
+    }, [dispatch, selector]);
 
     const handleOpen = () => {
         setOpen(true);
@@ -80,11 +85,11 @@ const Blogs = () => {
                         featured ? (
                             featured.map((blog) => {
                                 return <FeaturedCard 
-                                    data={blog} key={blog._id}
+                                    data={blog} key={blog._id} loading={loading}
                                 />
                             })
                         ) : (
-                            <h1>Empty</h1>
+                            <CircularProgress color="secondary" />
                         )
                     }
                 </Paper>

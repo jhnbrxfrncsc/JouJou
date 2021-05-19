@@ -29,7 +29,7 @@ const Header = () => {
         return () => {
             mounted = false;
         }
-    }, [location, user]);
+    }, [location]);
 
     const handleLogout = () => {
         dispatch({ type: LOGOUT })
